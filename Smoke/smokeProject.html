@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title style="text-align: center; font-weight: bold; text-decoration: underline; font-family: 'Montserrat', sans-serif; font-size: 48px;">Smoke Simulation</title>
+    <style>
+        body {
+            background-color: lightblue;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+            border: 1px solid black;
+        }
+
+        div {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        a {
+            display: inline-block;
+            margin: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+            a:hover {
+                text-decoration: underline;
+                color: #666;
+            }
+
+        p {
+            text-align: center;
+            margin-top: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: #666;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 style="text-align: center; font-weight: bold; text-decoration: underline; font-family: 'Montserrat', sans-serif; font-size: 36px;">Smoke Simulation</h1>
+    <canvas id="smokeCanvas"></canvas>
+    <script>const canvas = document.getElementById('smokeCanvas');
+        const context = canvas.getContext('2d');
+        const width = 600;
+        const height = 600;
+        canvas.width = width;
+        canvas.height = height;
+
+        // Draw smoke function
+        function drawSmoke(smoke) {
+            context.clearRect(0, 0, width, height);
+            context.fillStyle = 'gray';
+            smoke.forEach(function (p) {
+                context.beginPath();
+                context.arc(p.x, p.y, p.radius, 0, Math.PI * 2, true);
+                context.closePath();
+                context.fill();
+            });
+        }
+
+                // Animate smoke function
+        function animateSmoke(smoke) {
+            drawSmoke(smoke);
+            smoke.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 10
+            });
+            smoke.forEach(function (p) {
+                p.x += Math.random() * 4 - 2;
+                p.y -= Math.random() * 5;
+                p.radius += Math.random() * 0.3;
+            });
+            requestAnimationFrame(function () {
+                animateSmoke(smoke);
+            });
+        }
+
+        // Initialize smoke particles
+        const smokeParticles = [];
+
+        animateSmoke(smokeParticles);
+    </script>
+    <div>
+        <a href="project.html">The Project</a>
+        <a href="howitworks.html">How It Works</a>
+        <a href="howitlookslike.html">How It Looks Like</a>
+        <a href="report.html">Report</a>
+    </div>
+    <p>Carolina Bernaldo de Quirós de Cal</p>
+    <p>Enjoy!</p>
+</body>
+</html>

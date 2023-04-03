@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>How It Works</title>
+    <style>
+        body {
+            background-color: lightblue;
+            color: black;
+            text-align: justify;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        h1 {
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        #content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <h1>How It Works</h1>
+        <p>This Animation of Smoke Particles is implemented using a struct called “Particle”, which contains the velocity, position, acceleration, fade of each particle and life. The init_particles() function initializes an array of particles and the create_particle() generates a new particle with random properties each time it is called. Furthermore, the update_particles() function updates the velocity, life and position of each particle each frame.</p>
+        <p>We also have other fundamental functions for the development of the project. Draw_scene() is the one that renders the particles as points, with the use of the alpha value of each point being determined by the life of the corresponding particle. The idle_func() function calls update_particles() and create_particle() each frame. Also, the keyboard_func(unsigned char key, int x, int y) and the special_func(int key, int x, int y) functions handle user input for rotating the camera.</p>
+    </div>
+    <div style="text-align: center; margin-top: 50px;">
+        <a href="smokeProject.html">Home</a>
+    </div>
+</body>
+</html>

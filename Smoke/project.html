@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenGL Smoke Animation</title>
+    <style>
+        body {
+            background-color: lightblue;
+            text-align: justify;
+            padding: 50px;
+            font-size: 18px;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+            border: 1px solid black;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>OpenGL Smoke Animation</h1>
+
+    <p>The aim of this project is to create Smoke Particles with the use of OpenGL graphics library. This would represent the individual project of COMP 371 in Concordia University.</p>
+
+    <p>As an Exchange Student, it has been the first time working with OpenGL and C++, as well as 3D. From the beginning I was aware that I would have to put all my efforts in this course. I consider that I have mainly learned and enjoyed the course, which I consider very important.</p>
+
+    <canvas id="smokeCanvas"></canvas>
+
+    <script>const canvas = document.getElementById('smokeCanvas');
+        const context = canvas.getContext('2d');
+        const width = 600;
+        const height = 600;
+        canvas.width = width;
+        canvas.height = height;
+
+        // Draw smoke function
+        function drawSmoke(smoke) {
+            context.clearRect(0, 0, width, height);
+            context.fillStyle = 'gray';
+            smoke.forEach(function (p) {
+                context.beginPath();
+                context.arc(p.x, p.y, p.radius, 0, Math.PI * 2, true);
+                context.closePath();
+                context.fill();
+            });
+        }
+
+        // Animate smoke function
+        function animateSmoke(smoke) {
+            drawSmoke(smoke);
+            smoke.forEach(function (p) {
+                p.x += Math.random() * 4 - 2;
+                p.y -= Math.random() * 5;
+                p.radius += Math.random() * 0.3;
+            });
+            requestAnimationFrame(function () {
+                animateSmoke(smoke);
+            });
+        }
+
+        // Initialize smoke particles
+        const smokeParticles = [];
+        for (let i = 0; i < 100; i++) {
+            smokeParticles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 10
+            });
+        }
+
+        animateSmoke(smokeParticles);</script>
+
+    <p style="text-align: center;"><a href="smokeProject.html">Home</a></p>
+</body>
+</html>
